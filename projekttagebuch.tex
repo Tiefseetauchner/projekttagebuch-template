@@ -1,0 +1,115 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage[de-DE]{datetime2}
+\usepackage[super]{nth}
+\usepackage{pgffor}
+\usepackage{expl3}
+\usepackage{xstring}
+
+\geometry{a4paper, left=25mm, right=25mm, top=30mm, bottom=30mm}
+
+\input{./variables.tex}
+
+\newcounter{itemcount}
+\newcommand{\getitem}[2]{%
+	\setcounter{itemcount}{0}%
+	\foreach \i in #1 {%
+		\ifnum\theitemcount=#2{\i}{}\fi%
+		\stepcounter{itemcount}%
+	}%
+}
+
+% Header und Footer Einstellungen
+\pagestyle{fancy}
+\fancyhead[L]{Projekttagebuch}
+\fancyhead[R]{\teamname}
+
+\begin{document}
+	
+	\pagenumbering{roman}
+	\setcounter{page}{-1}
+	
+	\begin{titlepage}
+		\centering
+		% Logo oder Bild (optional)
+		%\includegraphics[width=0.4\textwidth]{logo.png} \\[2cm]
+		
+		% Titel des Projekts
+		{\LARGE \textbf{Projekttagebuch}} \\[0.5cm]
+		{\large \textbf{\teamname}} \\[0.3cm]
+		{\large Battleship} \\[2cm]
+		
+		% Untertitel oder Projektbeschreibung (optional)
+		\textit{\projectdescription} \\[1.5cm]
+		
+		\textbf{Teammitglieder:}
+		\foreach \member in \teammembers{
+			\\\member
+		}\\[0.5cm]
+
+
+		\textbf{Ansprechperson:} \\
+		\getitem{\teammembers}{\primaryContact} \\
+		
+		% Datum
+		\vfill
+		\large{\today}\\[1cm]
+		
+		% Universität, Studiengang, Kurs etc.
+		\textbf{FH Campus Wien} \\
+		Studiengang Computer Science and Digital Communications
+	\end{titlepage}
+	\newpage
+	
+	\tableofcontents
+	\newpage
+	
+	\pagenumbering{arabic}
+	\setcounter{page}{1}
+	
+	% Einleitung
+	\section{Einleitung}
+	\label{einleitung}
+	{\projectdescription}
+	
+	% Teammitglieder und Aufgabenverteilung
+	\section{Teammitglieder und Aufgabenverteilung}
+	\label{team}
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Name} & \textbf{Aufgabenbereich} \\
+		\hline
+		
+		\getitem{\teammembers}{0} & \getitem{\teammembersrole}{0} \\
+		\getitem{\teammembers}{1} & \getitem{\teammembersrole}{1} \\
+		\getitem{\teammembers}{2} & \getitem{\teammembersrole}{2} \\
+		\getitem{\teammembers}{3} & \getitem{\teammembersrole}{3} \\
+		% TODO: If you only have 4 team members, remove this line		
+		\getitem{\teammembers}{4} & \getitem{\teammembersrole}{4} \\
+		\hline
+	\end{tabular}
+	
+	\input{./aufgabenbereiche.tex}
+	
+	\input{./anforderungen.tex}
+	
+	\input{./prozesse.tex}
+	
+	% Tagesberichte
+	\newpage
+	\section{Tagesberichte}
+	\label{tagesberichte}
+	
+	\input{./tagesberichte_generated.tex}
+		
+	% Zusammenfassung
+	\newpage
+	\input{./zusammenfassung.tex}
+	
+\end{document}

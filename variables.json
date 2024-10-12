@@ -1,0 +1,19 @@
+{
+    "teamname": "{\\color{red}(TODO) Teamname}",
+    "teammembers": [
+        "{\\color{red}(TODO) Teammitglied 1}",
+        "{\\color{red}(TODO) Teammitglied 2}",
+        "{\\color{red}(TODO) Teammitglied 3}",
+        "{\\color{red}(TODO) Teammitglied 4}",
+        "{\\color{red}(TODO) Teammitglied 5 (optional)}"
+    ],
+    "teammembersrole": [
+        "{\\color{red}(TODO) Teammitglied 1 Rolle}",
+        "{\\color{red}(TODO) Teammitglied 2 Rolle}",
+        "{\\color{red}(TODO) Teammitglied 3 Rolle}",
+        "{\\color{red}(TODO) Teammitglied 4 Rolle}",
+        "{\\color{red}(TODO) Teammitglied 5 Rolle (optional)}"
+    ],
+    "primaryContact": 0,
+    "projectdescription": "{\\color{red}(TODO)}"
+}
